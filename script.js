@@ -112,9 +112,9 @@ form.addEventListener("submit", async (event) => {
   }
 });
 
-// Dynamic Countdown Timer (Launch target: December 31, 2026)
+// Dynamic Countdown Timer (Launch target: August 1, 2026)
 function initCountdown() {
-  const targetDate = new Date("Dec 31, 2026 23:59:59").getTime();
+  const targetDate = new Date("Aug 1, 2026 00:00:00").getTime();
 
   const daysVal = document.querySelector("#days");
   const hoursVal = document.querySelector("#hours");
