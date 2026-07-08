@@ -1,0 +1,18 @@
+:root {
+  --font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --color-cream: #f0cda8;
+  --color-cream-soft: #f8dfbf;
+  --color-sand: #d59b75;
+  --color-cocoa: #6f3b35;
+  --color-cocoa-dark: #4b2725;
+  --color-cocoa-deep: #2c1b1b;
+  --color-gold: #c98637;
+  --color-rose: #b76058;
+  --color-ink: #1a1a1a;
+  --color-muted: #6b6b6b;
+  --color-surface: #f7f7f7;
+  --color-border: rgba(0, 0, 0, 0.06);
+  --shadow-ring: 0 0 0 1px rgba(0, 0, 0, .04), 0 2px 6px rgba(0, 0, 0, .04), 0 12px 28px rgba(0, 0, 0, .06);
+  --shadow-ring-hover: 0 0 0 1px rgba(0, 0, 0, .06), 0 4px 12px rgba(0, 0, 0, .06), 0 20px 40px rgba(0, 0, 0, .08);
+  --shadow-deep: 0 24px 60px rgba(0, 0, 0, .12), 0 8px 20px rgba(0, 0, 0, .06);
+}

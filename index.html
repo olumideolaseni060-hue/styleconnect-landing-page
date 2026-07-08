@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Join the Styleconnect waitlist for a smarter way to connect customers, designers, and the fashion ecosystem." />
+  <meta name="theme-color" content="#6f3b35" />
+  <title>Styleconnect | App Waitlist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./design-system/tokens.css" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#waitlist">Skip to waitlist</a>
+
+  <main class="page-shell">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand-mark" href="#" aria-label="Styleconnect home">
+        <img src="./assets/style-connect-logo.jpg" alt="Styleconnect logo" />
+        <span translate="no">Styleconnect</span>
+      </a>
+      <a class="instagram-link" href="https://www.instagram.com/_styleconnect_/" target="_blank" rel="noreferrer">
+        <span aria-hidden="true">@</span>_styleconnect_
+      </a>
+    </nav>
+
+    <section class="waitlist-hero" aria-labelledby="hero-title">
+      <div class="hero-header-meta">
+        <p class="launch-pill">
+          <span class="pill-dot"></span> Available in Early 2027
+        </p>
+      </div>
+
+      <h1 id="hero-title">Custom clothes should be easier than ordering food.</h1>
+      <p class="hero-subtext">
+        Styleconnect is building a smarter way to connect customers, designers, and the fashion ecosystem so every fit
+        can feel simple, secure, and made for you.
+      </p>
+
+      <form class="waitlist-form" id="waitlist-form" novalidate>
+        <div class="fields-container">
+          <div class="field">
+            <label for="full-name">Name</label>
+            <input id="full-name" name="name" type="text" autocomplete="name" placeholder="Your full name" required />
+            <p class="field-error" id="name-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="phone-number">Phone</label>
+            <input id="phone-number" name="phone" type="tel" inputmode="tel" autocomplete="tel"
+              placeholder="+234 800 000 0000" required />
+            <p class="field-error" id="phone-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="email-address">Email</label>
+            <input id="email-address" name="email" type="email" inputmode="email" autocomplete="email"
+              spellcheck="false" placeholder="name@example.com" required />
+            <p class="field-error" id="email-error" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <button class="submit-button" type="submit">
+          <span>Join the Waitlist</span>
+          <span aria-hidden="true">-&gt;</span>
+        </button>
+      </form>
+      <p class="form-status" id="form-status" aria-live="polite"></p>
+
+      <div class="social-proof">
+        <div class="avatar-stack">
+          <div class="avatar" style="background-color: var(--color-rose);">S</div>
+          <div class="avatar" style="background-color: var(--color-gold);">C</div>
+          <div class="avatar" style="background-color: var(--color-sand);">F</div>
+          <div class="avatar" style="background: url('./assets/style-connect-logo.jpg') center/cover;"></div>
+        </div>
+        <span class="social-text">Join 3,400+ fashion designers & early users on the waitlist.</span>
+      </div>
+
+      <div class="countdown-container">
+        <div class="countdown-timer">
+          <div class="time-block">
+            <span id="days">00</span>
+            <p>Days</p>
+          </div>
+          <div class="time-separator">:</div>
+          <div class="time-block">
+            <span id="hours">00</span>
+            <p>Hours</p>
+          </div>
+          <div class="time-separator">:</div>
+          <div class="time-block">
+            <span id="minutes">00</span>
+            <p>Minutes</p>
+          </div>
+          <div class="time-separator">:</div>
+          <div class="time-block">
+            <span id="seconds">00</span>
+            <p>Seconds</p>
+          </div>
+        </div>
+        <div class="countdown-badge">
+          <span class="badge-icon">📅</span> LEFT UNTIL EARLY ACCESS RELEASE
+        </div>
+      </div>
+
+      <div class="mockup-showcase">
+        <div class="mockup-frame">
+          <div class="frame-header">
+            <span class="frame-dot red"></span>
+            <span class="frame-dot yellow"></span>
+            <span class="frame-dot green"></span>
+            <span class="frame-title">styleconnect_app_preview.png</span>
+          </div>
+          <div class="frame-body">
+            <img src="./assets/iPhone 16 Pro-3.png" alt="Styleconnect iOS App Preview Screens" class="mockup-image" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="promise-strip" aria-label="Styleconnect benefits">
+      <article>
+        <span>01</span>
+        <h2>Browse designers</h2>
+        <p>Discover fashion designers and view real work before you commit.</p>
+      </article>
+      <article>
+        <span>02</span>
+        <h2>Secure process</h2>
+        <p>Safer ordering, clearer updates, and a simpler experience from start to finish.</p>
+      </article>
+      <article>
+        <span>03</span>
+        <h2>Perfect fit focus</h2>
+        <p>Built around better measurements, fewer errors, and more confidence.</p>
+      </article>
+    </section>
+
+    <section class="story-section" aria-labelledby="story-title">
+      <div>
+        <p class="eyebrow">Why Styleconnect?</p>
+        <h2 id="story-title">Great designers deserve to be seen.</h2>
+      </div>
+      <p>
+        Traditional custom clothing can mean finding tailors manually, unclear pricing, poor updates, and disappointment
+        after delivery. Styleconnect brings discovery, communication, measurement support, and progress updates into one
+        app.
+      </p>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>
