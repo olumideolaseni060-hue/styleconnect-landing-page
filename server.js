@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
@@ -103,6 +104,41 @@ app.post("/api/waitlist", (req, res) => {
   waitlist.push(newEntry);
 
   if (writeWaitlist(waitlist)) {
+    const convertkitApiKey = process.env.CONVERTKIT_API_KEY;
+    const convertkitFormId = process.env.CONVERTKIT_FORM_ID;
+
+    if (convertkitApiKey && convertkitFormId) {
+      const payload = {
+        api_key: convertkitApiKey,
+        email: newEntry.email,
+        first_name: newEntry.name,
+        fields: {
+          phone: newEntry.phone,
+          role: newEntry.role,
+          city: newEntry.city
+        }
+      };
+
+      fetch(`https://api.convertkit.com/v3/forms/${convertkitFormId}/subscribe`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+        body: JSON.stringify(payload)
+      })
+      .then(async (response) => {
+        const responseData = await response.json();
+        if (!response.ok) {
+          console.error("ConvertKit API error response:", responseData);
+        } else {
+          console.log("Successfully subscribed to ConvertKit:", responseData);
+        }
+      })
+      .catch((error) => {
+        console.error("Failed to connect to ConvertKit API:", error);
+      });
+    } else {
+      console.warn("ConvertKit credentials are not configured. Submissions are saved locally only.");
+    }
+
     return res.status(201).json({
       message: "Successfully joined the waitlist!",
       entry: newEntry,
