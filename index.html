@@ -43,35 +43,59 @@
         can feel simple, secure, and made for you.
       </p>
 
-      <form class="waitlist-form" id="waitlist-form" novalidate>
-        <div class="fields-container">
-          <div class="field">
-            <label for="full-name">Name</label>
-            <input id="full-name" name="name" type="text" autocomplete="name" placeholder="Your full name" required />
+      <div class="waitlist-card">
+        <!-- Choose Role Tabs -->
+        <div class="role-tabs">
+          <button type="button" class="role-tab active" data-role="Fashion Seeker">Fashion Seeker</button>
+          <button type="button" class="role-tab" data-role="Fashion Designer">Fashion Designer</button>
+          <button type="button" class="role-tab" data-role="Fabric Seller">Fabric Seller</button>
+        </div>
+
+        <!-- Dynamic Role Description -->
+        <p class="role-description" id="role-description">
+          Find fashion designers & fabric sellers, get perfect measurements, and order custom outfits.
+        </p>
+
+        <form class="waitlist-form-v2" id="waitlist-form" novalidate>
+          <input type="hidden" id="selected-role" name="role" value="Fashion Seeker" />
+          <input type="hidden" id="selected-city" name="city" value="Ibadan" />
+
+          <div class="field-v2">
+            <label for="full-name">Full Name</label>
+            <input id="full-name" name="name" type="text" autocomplete="name" placeholder="Emeka Johnson" required />
             <p class="field-error" id="name-error" aria-live="polite"></p>
           </div>
 
-          <div class="field">
-            <label for="phone-number">Phone</label>
+          <div class="field-v2">
+            <label for="email-address">Email Address</label>
+            <input id="email-address" name="email" type="email" inputmode="email" autocomplete="email"
+              spellcheck="false" placeholder="emeka@gmail.com" required />
+            <p class="field-error" id="email-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field-v2">
+            <label for="phone-number">Phone Number</label>
             <input id="phone-number" name="phone" type="tel" inputmode="tel" autocomplete="tel"
               placeholder="+234 800 000 0000" required />
             <p class="field-error" id="phone-error" aria-live="polite"></p>
           </div>
 
-          <div class="field">
-            <label for="email-address">Email</label>
-            <input id="email-address" name="email" type="email" inputmode="email" autocomplete="email"
-              spellcheck="false" placeholder="name@example.com" required />
-            <p class="field-error" id="email-error" aria-live="polite"></p>
+          <div class="field-v2">
+            <label>City</label>
+            <button type="button" class="city-selector-btn" id="city-selector-btn">
+              <span id="selected-city-label">Ibadan</span>
+              <span class="chevron" aria-hidden="true">▼</span>
+            </button>
+            <p class="field-error" id="city-error" aria-live="polite"></p>
           </div>
-        </div>
 
-        <button class="submit-button" type="submit">
-          <span>Join the Waitlist</span>
-          <span aria-hidden="true">-&gt;</span>
-        </button>
-      </form>
-      <p class="form-status" id="form-status" aria-live="polite"></p>
+          <button class="submit-button-v2" type="submit">
+            <span>Join the Waitlist</span>
+            <span aria-hidden="true">-&gt;</span>
+          </button>
+        </form>
+        <p class="form-status" id="form-status" aria-live="polite"></p>
+      </div>
 
       <div class="social-proof">
         <div class="avatar-stack">
@@ -155,6 +179,21 @@
       </p>
     </section>
   </main>
+  <!-- City Selector Modal -->
+  <div class="city-modal-overlay" id="city-modal" aria-hidden="true">
+    <div class="city-modal-card">
+      <div class="city-modal-header">
+        <h2>Select City</h2>
+        <button type="button" class="close-modal-btn" id="close-modal-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="city-modal-search">
+        <input type="text" id="city-search" placeholder="Search city..." autocomplete="off" />
+      </div>
+      <div class="city-list" id="city-list">
+        <!-- Populated dynamically by JavaScript -->
+      </div>
+    </div>
+  </div>
 
   <script src="./script.js"></script>
 </body>

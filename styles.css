@@ -199,81 +199,149 @@ h1 {
   text-wrap: pretty;
 }
 
-/* Elegant search-bar style waitlist form */
-.waitlist-form {
+/* Ventry-styled vertical waitlist card and city modal */
+.waitlist-card {
   width: 100%;
-  max-width: 780px;
-  display: flex;
-  align-items: stretch;
+  max-width: 500px;
   background: var(--color-cocoa-dark);
-  padding: 8px;
-  border-radius: 20px;
+  padding: 2.2rem;
+  border-radius: 24px;
   box-shadow: var(--shadow-deep);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   margin-bottom: 0.5rem;
   position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: enter 540ms cubic-bezier(.2, 0, 0, 1) both;
 }
 
-.waitlist-form:focus-within {
+.waitlist-card:focus-within {
   transform: translateY(-2px);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
 }
 
-.fields-container {
+/* Choose Role Tabs */
+.role-tabs {
   display: flex;
-  flex: 1;
-  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-bottom: 1.25rem;
 }
 
-.field {
+.role-tab {
+  flex: 1;
+  background: transparent;
+  color: var(--color-cream-soft);
+  border: 1px solid rgba(248, 223, 191, 0.2);
+  border-radius: 12px;
+  padding: 0.8rem 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.role-tab:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(248, 223, 191, 0.4);
+}
+
+.role-tab.active {
+  background: var(--color-cream-soft);
+  color: var(--color-cocoa-deep);
+  border-color: var(--color-cream-soft);
+}
+
+.role-tab:focus-visible {
+  outline: 2px solid var(--color-cream-soft);
+  outline-offset: 2px;
+}
+
+/* Dynamic Role Description */
+.role-description {
+  font-size: 0.88rem;
+  color: var(--color-cream);
+  line-height: 1.5;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 1.8rem;
+  text-align: center;
+  min-height: 2.8rem; /* Prevents layout shifting when content changes */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.waitlist-form-v2 {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  flex: 1;
+}
+
+.field-v2 {
+  display: flex;
+  flex-direction: column;
   text-align: left;
-  padding: 4px 16px;
-  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: 1.25rem;
   position: relative;
 }
 
-.field:last-of-type {
-  border-right: none;
-}
-
-.field label {
+.field-v2 label {
   color: var(--color-cream-soft);
   font-size: 0.68rem;
-  font-weight: 800;
+  font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 4px;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
 }
 
-.field input {
-  background: transparent !important;
-  border: none !important;
+.field-v2 input,
+.city-selector-btn {
+  background: rgba(0, 0, 0, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 12px !important;
   color: #ffffff !important;
-  padding: 0 !important;
-  min-height: auto !important;
+  padding: 0.85rem 1.1rem !important;
   font-size: 0.92rem !important;
-  box-shadow: none !important;
-  width: 100% !important;
   font-weight: 500;
-  height: auto !important;
+  width: 100% !important;
+  height: 48px !important;
+  box-shadow: none !important;
+  transition: all 0.2s ease;
 }
 
-.field input::placeholder {
+.field-v2 input::placeholder {
   color: rgba(255, 255, 255, 0.35);
 }
 
-.field input:focus {
+.field-v2 input:focus,
+.city-selector-btn:focus,
+.city-selector-btn:hover {
   outline: none !important;
+  border-color: var(--color-cream-soft) !important;
+  background: rgba(0, 0, 0, 0.25) !important;
+}
+
+.city-selector-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.city-selector-btn .chevron {
+  font-size: 0.7rem;
+  color: var(--color-cream);
+  transition: transform 0.2s ease;
 }
 
 .field-error {
   position: absolute;
-  bottom: -22px;
-  left: 16px;
+  bottom: -18px;
+  left: 4px;
   font-size: 0.72rem;
   color: #ffc9b8;
   margin: 0;
@@ -284,35 +352,187 @@ h1 {
   min-height: 1.5rem;
   margin-top: 1rem;
   font-size: 0.9rem;
-  color: var(--color-cocoa-dark);
+  color: var(--color-cream-soft);
   font-weight: 800;
+  text-align: center;
 }
 
-.submit-button {
+.submit-button-v2 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   border-radius: 12px;
-  padding: 0 24px;
+  height: 52px;
   background: #ffffff;
   color: var(--color-cocoa-deep);
   border: none;
   font-weight: 900;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
   white-space: nowrap;
+  width: 100%;
+  margin-top: 0.5rem;
 }
 
-.submit-button:hover {
+.submit-button-v2:hover {
   background: var(--color-cream-soft);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.submit-button[disabled] {
+.submit-button-v2:active {
+  transform: scale(.98);
+}
+
+.submit-button-v2[disabled] {
   cursor: progress;
   opacity: 0.75;
+}
+
+/* City Modal Overlay & Dialog */
+.city-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(44, 27, 27, 0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.city-modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.city-modal-card {
+  background: var(--color-cocoa-dark);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  width: min(440px, 90%);
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-deep);
+  overflow: hidden;
+  transform: scale(0.95);
+  transition: transform 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.city-modal-overlay.open .city-modal-card {
+  transform: scale(1);
+}
+
+.city-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.city-modal-header h2 {
+  font-size: 1.2rem;
+  color: #ffffff;
+  font-weight: 800;
+  margin: 0;
+}
+
+.close-modal-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-cream-soft);
+  font-size: 1.8rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.15s ease;
+}
+
+.close-modal-btn:hover {
+  color: #ffffff;
+}
+
+.city-modal-search {
+  padding: 1rem 1.5rem;
+}
+
+.city-modal-search input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 0.92rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.city-modal-search input:focus {
+  border-color: var(--color-cream-soft);
+}
+
+.city-list {
+  overflow-y: auto;
+  padding: 0 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-height: 350px;
+}
+
+/* Custom Scrollbar for City List */
+.city-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.city-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.city-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 99px;
+}
+
+.city-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.city-option {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.city-option:hover,
+.city-option:focus {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-cream-soft);
+  outline: none;
+}
+
+.city-option.selected {
+  background: var(--color-cream-soft);
+  color: var(--color-cocoa-deep);
+  font-weight: 700;
 }
 
 /* Social Proof */
