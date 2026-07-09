@@ -7,9 +7,8 @@ const selectedRoleInput = document.querySelector("#selected-role");
 const roleDescriptionEl = document.querySelector("#role-description");
 
 const roleDescriptions = {
-  "Fashion Seeker": "Find fashion designers & fabric sellers, get perfect measurements, and order custom outfits.",
-  "Fashion Designer": "Join as a designer, showcase your portfolio, manage clients, and grow your fashion brand.",
-  "Fabric Seller": "Join as a fabric seller, list your inventory, and connect directly with designers & customers."
+  "Fashion Seeker": "Find fashion designers, get perfect measurements, and order custom outfits.",
+  "Fashion Designer": "Join as a designer, showcase your portfolio, manage clients, and grow your fashion brand."
 };
 
 roleTabs.forEach(tab => {
