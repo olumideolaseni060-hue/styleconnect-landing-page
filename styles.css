@@ -106,11 +106,14 @@ input:focus-visible {
   text-align: center;
   max-width: 960px;
   margin: 0 auto;
-  padding: 0.25rem 0 0.75rem;
+  min-height: calc(100vh - 75px);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding: 1rem 0;
   animation: enter 540ms cubic-bezier(.2, 0, 0, 1) both;
+  box-sizing: border-box;
 }
 
 .hero-header-meta {
@@ -842,4 +845,14 @@ h1 {
   .time-block {
     min-width: 40px;
   }
+}
+
+/* Group container for content below initial viewport */
+.scroll-content-group {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  width: 100%;
 }
