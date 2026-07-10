@@ -100,32 +100,88 @@ app.post("/api/waitlist", (req, res) => {
     const convertkitFormId = process.env.CONVERTKIT_FORM_ID;
 
     if (convertkitApiKey && convertkitFormId) {
-      const payload = {
-        api_key: convertkitApiKey,
-        email: newEntry.email,
-        first_name: newEntry.name,
-        fields: {
-          role: newEntry.role,
-          city: newEntry.city
-        }
-      };
+      const isV4 = convertkitApiKey.startsWith("kit_");
 
-      fetch(`https://api.convertkit.com/v3/forms/${convertkitFormId}/subscribe`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json; charset=utf-8" },
-        body: JSON.stringify(payload)
-      })
-      .then(async (response) => {
-        const responseData = await response.json();
-        if (!response.ok) {
-          console.error("ConvertKit API error response:", responseData);
-        } else {
-          console.log("Successfully subscribed to ConvertKit:", responseData);
-        }
-      })
-      .catch((error) => {
-        console.error("Failed to connect to ConvertKit API:", error);
-      });
+      if (isV4) {
+        const createPayload = {
+          email_address: newEntry.email,
+          first_name: newEntry.name,
+          fields: {
+            role: newEntry.role,
+            city: newEntry.city
+          }
+        };
+
+        fetch("https://api.kit.com/v4/subscribers", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            "X-Kit-Api-Key": convertkitApiKey
+          },
+          body: JSON.stringify(createPayload)
+        })
+        .then(async (createResponse) => {
+          const createData = await createResponse.json();
+          if (!createResponse.ok) {
+            console.error("Kit V4 create subscriber error response:", createData);
+            return;
+          }
+          
+          console.log("Successfully created/updated subscriber on Kit V4:", createData);
+
+          const linkPayload = {
+            email_address: newEntry.email
+          };
+
+          return fetch(`https://api.kit.com/v4/forms/${convertkitFormId}/subscribers`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8",
+              "X-Kit-Api-Key": convertkitApiKey
+            },
+            body: JSON.stringify(linkPayload)
+          });
+        })
+        .then(async (linkResponse) => {
+          if (!linkResponse) return;
+          const linkData = await linkResponse.json();
+          if (!linkResponse.ok) {
+            console.error("Kit V4 add to form error response:", linkData);
+          } else {
+            console.log("Successfully added subscriber to Kit V4 form:", linkData);
+          }
+        })
+        .catch((error) => {
+          console.error("Failed to connect to Kit V4 API:", error);
+        });
+      } else {
+        const payload = {
+          api_key: convertkitApiKey,
+          email: newEntry.email,
+          first_name: newEntry.name,
+          fields: {
+            role: newEntry.role,
+            city: newEntry.city
+          }
+        };
+
+        fetch(`https://api.convertkit.com/v3/forms/${convertkitFormId}/subscribe`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json; charset=utf-8" },
+          body: JSON.stringify(payload)
+        })
+        .then(async (response) => {
+          const responseData = await response.json();
+          if (!response.ok) {
+            console.error("ConvertKit V3 API error response:", responseData);
+          } else {
+            console.log("Successfully subscribed to ConvertKit V3:", responseData);
+          }
+        })
+        .catch((error) => {
+          console.error("Failed to connect to ConvertKit V3 API:", error);
+        });
+      }
     } else {
       console.warn("ConvertKit credentials are not configured. Submissions are saved locally only.");
     }
