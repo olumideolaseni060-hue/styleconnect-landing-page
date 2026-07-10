@@ -49,7 +49,7 @@ function writeWaitlist(data) {
 
 // Waitlist Submission Endpoint
 app.post("/api/waitlist", (req, res) => {
-  const { name, email, phone, role, city } = req.body;
+  const { name, email, role, city } = req.body;
 
   // Basic validation
   if (!name || !name.trim()) {
@@ -57,9 +57,6 @@ app.post("/api/waitlist", (req, res) => {
   }
   if (!email || !email.trim()) {
     return res.status(400).json({ error: "Email is required." });
-  }
-  if (!phone || !phone.trim()) {
-    return res.status(400).json({ error: "Phone number is required." });
   }
   if (!role || !role.trim()) {
     return res.status(400).json({ error: "Role selection is required." });
@@ -74,11 +71,7 @@ app.post("/api/waitlist", (req, res) => {
     return res.status(400).json({ error: "Invalid email address format." });
   }
 
-  // Validate phone length
-  const compactPhone = phone.replace(/[^\d+]/g, "");
-  if (compactPhone.length < 8) {
-    return res.status(400).json({ error: "Phone number must have at least 8 digits." });
-  }
+
 
   const waitlist = readWaitlist();
 
@@ -94,7 +87,6 @@ app.post("/api/waitlist", (req, res) => {
   const newEntry = {
     name: name.trim(),
     email: email.trim().toLowerCase(),
-    phone: phone.trim(),
     role: role.trim(),
     city: city.trim(),
     source: "Styleconnect Waitlist Landing Page",
@@ -113,7 +105,6 @@ app.post("/api/waitlist", (req, res) => {
         email: newEntry.email,
         first_name: newEntry.name,
         fields: {
-          phone: newEntry.phone,
           role: newEntry.role,
           city: newEntry.city
         }

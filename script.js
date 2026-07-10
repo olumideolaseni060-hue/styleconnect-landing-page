@@ -136,14 +136,7 @@ const fields = {
       return isEmail ? "" : "Enter a valid email address.";
     },
   },
-  phone: {
-    input: document.querySelector("#phone-number"),
-    error: document.querySelector("#phone-error"),
-    validate(value) {
-      const compact = value.replace(/[^\d+]/g, "");
-      return compact.length >= 8 ? "" : "Enter a phone number with at least 8 digits.";
-    },
-  },
+
   city: {
     input: selectedCityInput,
     error: document.querySelector("#city-error"),
@@ -202,7 +195,6 @@ form.addEventListener("submit", async (event) => {
   const payload = {
     name: fields.name.input.value.trim(),
     email: fields.email.input.value.trim(),
-    phone: fields.phone.input.value.trim(),
     role: selectedRoleInput.value,
     city: selectedCityInput.value
   };
